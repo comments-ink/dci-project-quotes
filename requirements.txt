@@ -1,0 +1,4 @@
+django>=4,<5
+django-contrib-comments>=2.2,<2.3
+django-debug-toolbar>=3.2,<3.3
+django-comments-ink==0.0.1
