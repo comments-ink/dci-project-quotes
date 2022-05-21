@@ -9,11 +9,16 @@
 Features:
  * It is a fully backend driven project (no JavaScript needed).
  * Users and visitors can send comments and replies.
- * The maximum thread level is one, which seems to be the most common scenario: users or visitors can send comments either using the main comment form or by clicking on the "write a reply" button. Modify the the maximum thread level using either the setting `COMMENTS_INK_MAX_THREAD_LEVEL` or `COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL`.
+ * The maximum thread level is one, which seems to be the most common scenario: users or visitors can send comments either using the main comment form or by clicking on the "write a reply" button (see the sample image below). Modify the the maximum thread level using either the setting `COMMENTS_INK_MAX_THREAD_LEVEL` or `COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL`.
  * Users can send reactions to each Quote. The available reactions are +1 and -1, which correspond to the default reactions provided with django-comments-ink ([here](https://github.com/comments-ink/django-comments-ink/blob/0abfbee5e02a8886f646d4bd39b3e4d89e699823/django_comments_ink/models.py#L392)), but they can be customized modifying the setting [`COMMENTS_INK_OBJECT_REACTIONS_ENUM`](https://github.com/comments-ink/django-comments-ink/blob/0abfbee5e02a8886f646d4bd39b3e4d89e699823/django_comments_ink/conf/defaults.py#L38).
  * Users can also send reactions to each comment. The available reactions for comments in this project are the same as the reactions for objects. Modify the setting [`COMMENTS_INK_COMMENT_REACTIONS_ENUM`](https://github.com/comments-ink/django-comments-ink/blob/0abfbee5e02a8886f646d4bd39b3e4d89e699823/django_comments_ink/conf/defaults.py#L35) to change the list of reactions available for comments.
+ * django-comments-ink comes by default with a few themes that change the look of the comments. The one in the image below is the default theme, used when the setting `COMMENTS_INK_THEME_DIR` is empty. It can take the following values, that correspond with the directories under `templates/comments/themes` in django-comments-ink:
+   * `avatar_in_header`
+   * `avatar_in_thread`
+   * `feedback_in_header`
 
-<p align="center"><img src="cover.png"></p>
+
+<p align="center"><hr /><img src="cover.png"><hr /></p>
 
 ## Setup virtual environment
 
