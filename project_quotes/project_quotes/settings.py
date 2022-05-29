@@ -14,8 +14,7 @@ from pathlib import Path
 
 SITE_ID = 1
 
-PRODUCTION = bool(os.getenv("PRODUCTION", False))
-
+PRODUCTION = os.getenv("PRODUCTION", False) in ["1", "True", "true"]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "bqac+=!uj4i@-1q-u#w=gy*q6b(y_5*nv84s4vbg#@5s+cq7nc"
+SECRET_KEY = os.getenv("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if PRODUCTION else True
@@ -97,11 +96,11 @@ if PRODUCTION:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "dcx-demo-qp",
-            "USER": "dcx-demo",
-            "PASSWORD": "dcx-demo",
-            "HOST": "dcx-postgres",
-            "PORT": "5432",
+            "NAME": os.getenv("DB_NAME"),
+            "USER": os.getenv("DB_USER"),
+            "PASSWORD": os.getenv("DB_PWD"),
+            "HOST": os.getenv("DB_HOST"),
+            "PORT": os.getenv("DB_PORT"),
         },
     }
 else:
@@ -155,10 +154,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-if PRODUCTION:
-    STATIC_URL = "http://localhost:8049/"
-else:
-    STATIC_URL = "static/"
+STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR.parent / "static"
 
@@ -220,6 +216,8 @@ COMMENTS_INK_APP_MODEL_OPTIONS = {
     },
 }
 
+COMMENTS_INK_CACHE_NAME = "default"
+
 # All HTML elements rendered by django-comments-ink use the 'dci' CSS selector,
 # defined in 'django_comments_ink/static/django_comments_ink/css/comments.css'.
 # You can alter the CSS rules applied to your comments adding your own custom
@@ -227,7 +225,7 @@ COMMENTS_INK_APP_MODEL_OPTIONS = {
 COMMENTS_INK_CSS_CUSTOM_SELECTOR = "dci dci-custom"
 
 # How many users are listed when hovering a reaction.
-COMMENTS_INK_MAX_USERS_IN_TOOLTIP = 5
+COMMENTS_INK_MAX_USERS_IN_TOOLTIP = 10
 
 # Display up to the given number of comments in the last page to avoid
 # creating another page containing only these amount of comments.
