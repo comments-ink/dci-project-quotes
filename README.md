@@ -20,7 +20,35 @@ Features:
 
 <p align="center"><hr /><img src="cover.png"><hr /></p>
 
-## Setup virtual environment
+## Run with Docker
+
+To run the project with Docker, create an `.env` file with the following vars:
+
+    PRODUCTION=1
+    SECRET_KEY="k!5lw18q1#8#&_7k=ew!k_=p%4a@)($c0b8mp_yxbvw@weng$@"
+    DB_NAME=dci
+    DB_USER=dci
+    DB_PWD=dci
+    DB_HOST=postgres
+    DB_PORT=5432
+
+And use docker compose to build the image with the Django project, launch the containers and run the migrations:
+
+    $ docker compose build django
+    $ docker compose --env-file .env up -d
+    $ docker compose exec django python manage.py migrate
+    $ docker compose exec django python manage.py loaddata ../fixtures/sites.json
+    $ docker compose exec django python manage.py loaddata ../fixtures/users.json
+    $ docker compose exec django python manage.py loaddata ../fixtures/quotes.json
+    $ docker compose exec django python manage.py loaddata ../fixtures/comments.json
+
+The Django project must be running in http://localhost:8080.
+
+## Run locally
+
+Instead of running the project with Docker, here are the equivalent steps to setup the project locally.
+
+### Setup virtual environment
 
 Create a virtual environment:
 
@@ -28,7 +56,7 @@ Create a virtual environment:
     $ source venv/bin/activate
     $ pip install -r requirements.txt
 
-## Setup the Django project
+### Setup the Django project
 
 Run Django's `migrate` command and load the fixture data:
 
