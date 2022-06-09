@@ -1,15 +1,9 @@
 # dci-project-quotes
 
-It is a very simple Django project with only three dependencies:
- * django>=4,<5
- * django-contrib-comments>=2.2,<2.3
- * django-debug-toolbar>=3.2,<3.3
- * django-comments-ink==0.0.1
-
- 1. Features
- 2. Run in Docker
- 3. Run in your host OS
- 4. About users
+ 1. [Features](#1-features)
+ 2. [Run in Docker](#2-run-in-docker)
+ 3. [Run in your host OS](#3-run-in-your-host-os)
+ 4. [About users](#4-about-users)
 
 ## 1. Features
 
