@@ -182,13 +182,14 @@ COMMENTS_APP = "django_comments_ink"
 
 COMMENTS_HIDE_REMOVED = False
 
-COMMENTS_INK_SALT = b"w28dnq7czc1m+=l)=yiydar-r$$pnz#a5#22pjz_&5n%sq^kkr"
-COMMENTS_INK_CONFIRM_EMAIL = True  # Set to False to disable confirmation
+COMMENTS_INK_SALT = os.getenv("COMMENTS_INK_SALT", "")
+COMMENTS_INK_CONFIRM_EMAIL = True  # Set to False to disable confirmation.
 COMMENTS_INK_FROM_EMAIL = "staff@example.com"
 COMMENTS_INK_CONTACT_EMAIL = "staff@example.com"
-COMMENTS_INK_THREADED_EMAILS = False  # default to True, use False to allow
-# other backend (say Celery based) send
-# your emails.
+
+# Default to True, use False to allow other
+# backend (say Celery based) send your emails.
+COMMENTS_INK_THREADED_EMAILS = False
 
 COMMENTS_INK_API_USER_REPR = lambda user: user.name
 
