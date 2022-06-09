@@ -1,12 +1,18 @@
 # dci-project-quotes
 
-... is a very simple Django project with only three dependencies:
+It is a very simple Django project with only three dependencies:
  * django>=4,<5
  * django-contrib-comments>=2.2,<2.3
  * django-debug-toolbar>=3.2,<3.3
  * django-comments-ink==0.0.1
 
-Features:
+ 1. Features
+ 2. Run in Docker
+ 3. Run in your host OS
+ 4. About users
+
+## 1. Features
+
  * It is a fully backend driven project (no JavaScript needed).
  * Users and visitors can send comments and replies.
  * The maximum thread level is one, which seems to be the most common scenario: users or visitors can send comments either using the main comment form or by clicking on the "write a reply" button (see the sample image below). Modify the the maximum thread level using either the setting `COMMENTS_INK_MAX_THREAD_LEVEL` or `COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL`.
@@ -20,9 +26,9 @@ Features:
 
 <p align="center"><hr /><img src="cover.png"><hr /></p>
 
-## Run with Docker
+## 2. Run in Docker
 
-To run the project with Docker, create an `.env` file with the following vars:
+To run the project with Docker, create an `.docker_env` file with the following vars:
 
     PRODUCTION=1
     SECRET_KEY="k!5lw18q1#8#&_7k=ew!k_=p%4a@)($c0b8mp_yxbvw@weng$@"
@@ -35,26 +41,38 @@ To run the project with Docker, create an `.env` file with the following vars:
 And use docker compose to build the image with the Django project, launch the containers and run the migrations:
 
     $ docker compose build django
-    $ docker compose --env-file .env up -d
-    $ docker compose exec django python manage.py migrate
-    $ docker compose exec django python manage.py loaddata ../fixtures/sites.json
-    $ docker compose exec django python manage.py loaddata ../fixtures/users.json
-    $ docker compose exec django python manage.py loaddata ../fixtures/quotes.json
-    $ docker compose exec django python manage.py loaddata ../fixtures/comments.json
+    $ docker compose --env-file .docker_env up -d
+    $ docker compose --env-file .docker_env exec django python manage.py migrate
+    $ docker compose --env-file .docker_env exec django python manage.py loaddata ../fixtures/sites.json
+    $ docker compose --env-file .docker_env exec django python manage.py loaddata ../fixtures/users.json
+    $ docker compose --env-file .docker_env exec django python manage.py loaddata ../fixtures/quotes.json
+    $ docker compose --env-file .docker_env exec django python manage.py loaddata ../fixtures/comments.json
 
 The Django project must be running in http://localhost:8080.
 
-## Run locally
+## 3. Run in your host OS
 
-Instead of running the project with Docker, here are the equivalent steps to setup the project locally.
+Instead of running the project with Docker, here are the equivalent steps to setup the project in your usual host OS.
 
-### Setup virtual environment
+### Setup virtual environment
 
 Create a virtual environment:
 
     $ python3.10 -m venv venv
     $ source venv/bin/activate
     $ pip install -r requirements.txt
+
+### Create .env file
+
+Within the just created virtual environment, generate two new random secret keys. We will used them to feed the `SECRET_KEY` and the `COMMENTS_INK_SALT` environment variables. Generate each key with this command:
+
+    python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+Create a `.env` file with the following content:
+
+    PRODUCTION=False
+    SECRET_KEY="secret_key_from_previous_step"
+    COMMENTS_INK_SALT="another_secret_key_from_previous_step"
 
 ### Setup the Django project
 
@@ -71,7 +89,7 @@ And finally launch the development server:
 
     $ python manage.py runserver
 
-## About users
+## 4. About users
 
 The project allows you to login using any of the users provided with the `users.json` fixture. There are 110 users. Here are the login email and password of the first 10. The rest follow the same pattern; they have as password the left side of the email address:
 

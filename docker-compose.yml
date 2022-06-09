@@ -24,7 +24,7 @@ services:
         condition: service_healthy
 
   django:
-    image: dci-project-quotes:${DEMO_QUOTES_VER:-0.0.2}
+    image: dci-project-quotes:${DEMO_QUOTES_VER:-latest}
     hostname: django
     container_name: django
     build:
