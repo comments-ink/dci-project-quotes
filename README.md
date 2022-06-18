@@ -5,6 +5,8 @@
  3. [Run in your host OS](#3-run-in-your-host-os)
  4. [About users](#4-about-users)
 
+<p align="center"><hr /><img src="cover.png"><hr /></p>
+
 ## 1. Features
 
  * It is a fully backend driven project (no JavaScript needed).
@@ -16,9 +18,6 @@
    * `avatar_in_header`
    * `avatar_in_thread`
    * `feedback_in_header`
-
-
-<p align="center"><hr /><img src="cover.png"><hr /></p>
 
 ## 2. Run in Docker
 
