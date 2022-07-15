@@ -3,7 +3,6 @@ from datetime import date, datetime
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django_comments_ink.moderation import SpamModerator, moderator
 
 
 class PublicManager(models.Manager):
@@ -37,15 +36,6 @@ class Quote(models.Model):
 
     def get_absolute_url(self):
         return reverse("quote-detail", kwargs={"slug": self.slug})
-
-
-class QuoteCommentModerator(SpamModerator):
-    email_notification = True
-    auto_moderate_field = "published_time"
-    moderate_after = 365
-
-
-moderator.register(Quote, QuoteCommentModerator)
 
 
 def check_comments_input_allowed(obj):
