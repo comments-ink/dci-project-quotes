@@ -705,23 +705,6 @@ UL LI {
 
 .hide { display: none }
 
-/* --------------------- */
-/* Override comments.css */
-
-.dci.dci-custom .comment-box .body {
-    line-height: 1.5;
-    color: #555;
-    font-size: 0.9rem;
+.dci.dci-custom {
+    padding: 16px 0;
 }
-
-.dci.dci-custom .comment-box .footer {
-    padding-left: 20px;
-}
-
-.dci.dci-custom .comment-box-img .body {
-    padding: 4px;
-    line-height: 1.4;
-    color: #555;
-    font-size: 0.9rem;
-}
-

@@ -205,10 +205,13 @@ COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL = {
     "quotes.quote": 1  # So 2 levels: from 0 to 1.
 }
 
+COMMENTS_INK_LIST_ORDER = ("thread__id", "order")
+
 COMMENTS_INK_APP_MODEL_OPTIONS = {
     "default": {
         "who_can_post": "all",  # Valid values: "users", "all".
         "comment_flagging_enabled": True,
+        "comment_votes_enabled": False,
         "comment_reactions_enabled": True,
         "object_reactions_enabled": True,
     },
@@ -233,7 +236,7 @@ COMMENTS_INK_MAX_USERS_IN_TOOLTIP = 10
 COMMENTS_INK_MAX_LAST_PAGE_ORPHANS = 4
 
 # Number of comments per page. When <=0 pagination is disabled.
-COMMENTS_INK_ITEMS_PER_PAGE = 10
+COMMENTS_INK_COMMENTS_PER_PAGE = 10
 
 # COMMENTS_INK_THEME_DIR = "feedback_in_header"
 
