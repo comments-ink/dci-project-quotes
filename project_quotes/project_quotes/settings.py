@@ -182,7 +182,7 @@ COMMENTS_APP = "django_comments_ink"
 
 COMMENTS_HIDE_REMOVED = False
 
-COMMENTS_INK_SALT = os.getenv("COMMENTS_INK_SALT", "")
+COMMENTS_INK_SALT = os.getenv("COMMENTS_INK_SALT", "").encode("utf-8")
 COMMENTS_INK_CONFIRM_EMAIL = True  # Set to False to disable confirmation.
 COMMENTS_INK_FROM_EMAIL = "staff@example.com"
 COMMENTS_INK_CONTACT_EMAIL = "staff@example.com"
@@ -205,13 +205,13 @@ COMMENTS_INK_MAX_THREAD_LEVEL_BY_APP_MODEL = {
     "quotes.quote": 1  # So 2 levels: from 0 to 1.
 }
 
-COMMENTS_INK_LIST_ORDER = ("thread__id", "order")
+COMMENTS_INK_LIST_ORDER = ("-thread__score", "thread__id", "order")
 
 COMMENTS_INK_APP_MODEL_OPTIONS = {
     "default": {
         "who_can_post": "all",  # Valid values: "users", "all".
         "comment_flagging_enabled": True,
-        "comment_votes_enabled": False,
+        "comment_votes_enabled": True,
         "comment_reactions_enabled": True,
         "object_reactions_enabled": True,
     },
