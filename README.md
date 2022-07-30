@@ -37,7 +37,7 @@ And use docker compose to build the image with the Django project, launch the co
     $ docker compose --env-file .env_docker build django
     $ docker compose --env-file .env_docker up -d
     $ docker compose --env-file .env_docker exec django python manage.py migrate
-    $ docker compose --env-file .env_docker exec django python manage.py loaddata ../fixtures/sites.json
+    $ docker compose --env-file .env_docker exec django python manage.py loaddata ../fixtures/sites_docker.json
     $ docker compose --env-file .env_docker exec django python manage.py loaddata ../fixtures/users.json
     $ docker compose --env-file .env_docker exec django python manage.py loaddata ../fixtures/quotes.json
     $ docker compose --env-file .env_docker exec django python manage.py loaddata ../fixtures/comments.json
